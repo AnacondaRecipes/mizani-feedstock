@@ -42,7 +42,7 @@ test:
   source_files:
     - 'mizani/tests/*.py'
   commands:
-    - pip check
+    - pip check  # [not win]
     - cd mizani && pytest tests -vv
 
 about:
