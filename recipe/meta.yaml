@@ -35,6 +35,7 @@ test:
     - mizani
     - mizani.external
     - mizani.tests
+    - mizani.colors
   requires:
     - pip
     - pytest
