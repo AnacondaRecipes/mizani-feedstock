@@ -1,5 +1,5 @@
 {% set name = "mizani" %}
-{% set version = "0.11.3" %}
+{% set version = "0.11.4" %}
 
 package:
   name: {{ name|lower }}
@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
-  sha256: a8e0b16627442bda2899e39f834ff004eb49f2da874f01f13aa329d073d6adc5
+  sha256: 9fdb79e88602ca29132613b428d6c1e8af436e88e37d55a0f8eb99fe044c9bc2
 
 build:
   number: 0
@@ -23,7 +23,7 @@ requirements:
     - wheel
   run:
     - python
-    - numpy >=1.23.0, <2
+    - numpy >=1.23.0
     - scipy >=1.7.0
     - pandas >=2.1.0
     - tzdata  # [win]
