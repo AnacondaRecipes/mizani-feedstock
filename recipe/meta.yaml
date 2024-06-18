@@ -23,7 +23,7 @@ requirements:
     - wheel
   run:
     - python
-    - numpy >=1.23.0
+    - numpy >=1.23.0, <2
     - scipy >=1.7.0
     - pandas >=2.1.0
     - tzdata  # [win]
@@ -39,7 +39,7 @@ test:
     - "tests"
     - pyproject.toml
   commands:
-    - pip check  # [not win]
+    - pip check
     - pytest -vv
 
 about:
