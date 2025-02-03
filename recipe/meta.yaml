@@ -1,5 +1,5 @@
 {% set name = "mizani" %}
-{% set version = "0.11.4" %}
+{% set version = "0.13.1" %}
 
 package:
   name: {{ name|lower }}
@@ -7,26 +7,26 @@ package:
 
 source:
   url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
-  sha256: 9fdb79e88602ca29132613b428d6c1e8af436e88e37d55a0f8eb99fe044c9bc2
+  sha256: e3247ea12c746c8104767d7e42a2d16473173c7bc314f298d8294a58f4653353
 
 build:
   number: 0
-  skip: True  # [py<39]
+  skip: True  # [py<310]
   script: {{ PYTHON }} -m pip install . --no-deps --no-build-isolation -vv
 
 requirements:
   host:
     - python
     - pip
-    - setuptools
-    - setuptools_scm
+    - setuptools >=61
+    - setuptools_scm >=6.2
     - wheel
   run:
     - python
-    - numpy >=1.23.0
-    - scipy >=1.7.0
-    - pandas >=2.1.0
-    - tzdata  # [win]
+    - numpy >=1.23.5
+    - scipy >=1.8.0
+    - pandas >=2.2.0
+    - python-tzdata # [win]
 
 test:
   imports:
@@ -40,9 +40,7 @@ test:
     - pyproject.toml
   commands:
     - pip check
-    - pytest -vv # [not win]
-    # Skipping test as it is a bug in the code: Here is a PR fix https://github.com/has2k1/mizani/pull/46
-    - pytest -vv -k "not censor" # [win]
+    - pytest -vv
 
 about:
   home: https://github.com/has2k1/mizani
