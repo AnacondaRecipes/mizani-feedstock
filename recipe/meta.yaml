@@ -32,6 +32,8 @@ requirements:
     - pyright >=1.1.402
 
 test:
+  source_files:
+    - tests
   imports:
     - mizani
     - mizani._colors
@@ -52,16 +54,13 @@ test:
     - mizani.scale
     - mizani.transforms
     - mizani.utils
+  commands:
+    - pip check
+    - pytest -vv
   requires:
     - pip
     - pytest
     - pytest-cov
-  source_files:
-    - tests
-    - pyproject.toml
-  commands:
-    - pip check
-    - pytest -vv
 
 about:
   home: https://github.com/has2k1/mizani
