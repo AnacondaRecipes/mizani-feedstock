@@ -20,6 +20,7 @@ requirements:
     - pip
     - setuptools >=61
     - setuptools_scm >=6.2
+    - tomli
     - wheel
   run:
     - python
@@ -27,7 +28,6 @@ requirements:
     - scipy >=1.8.0
     - pandas >=2.2.0
     - python-tzdata  # [win]
-    - tzdata  # [win]
   run_constrained:
     - pyright >=1.1.402
 
