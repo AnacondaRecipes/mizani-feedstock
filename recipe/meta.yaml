@@ -1,17 +1,17 @@
 {% set name = "mizani" %}
-{% set version = "0.13.1" %}
+{% set version = "0.14.2" %}
 
 package:
   name: {{ name|lower }}
   version: {{ version }}
 
 source:
-  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
-  sha256: e3247ea12c746c8104767d7e42a2d16473173c7bc314f298d8294a58f4653353
+  url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
+  sha256: d7180bf7c6fa60a7aa5b78da903bc6b2ffc30602d479a4a07b5240bc5330491d
 
 build:
   number: 0
-  skip: True  # [py<310]
+  skip: true  # [py<310]
   script: {{ PYTHON }} -m pip install . --no-deps --no-build-isolation -vv
 
 requirements:
@@ -26,17 +26,38 @@ requirements:
     - numpy >=1.23.5
     - scipy >=1.8.0
     - pandas >=2.2.0
-    - python-tzdata # [win]
+    - python-tzdata  # [win]
+    - tzdata  # [win]
+  run_constrained:
+    - pyright >=1.1.402
 
 test:
   imports:
     - mizani
+    - mizani._colors
+    - mizani._colors._colormaps._maps._segment_function
+    - mizani._colors._palettes.brewer
+    - mizani._colors._palettes.other
+    - mizani._colors.named_colors
+    - mizani._colors.utils
+    - mizani._datetime
+    - mizani._datetime.breaks
+    - mizani._datetime.utils
+    - mizani._timedelta.breaks
+    - mizani._timedelta.utils
+    - mizani.bounds
+    - mizani.breaks
+    - mizani.labels
+    - mizani.palettes
+    - mizani.scale
+    - mizani.transforms
+    - mizani.utils
   requires:
     - pip
     - pytest
     - pytest-cov
   source_files:
-    - "tests"
+    - tests
     - pyproject.toml
   commands:
     - pip check
@@ -52,7 +73,7 @@ about:
     Mizani is a scales package for graphics.
     It is written in Python and is based on Hadley Wickham's Scales.
   dev_url: https://github.com/has2k1/mizani
-  doc_url: https://mizani.readthedocs.io/
+  doc_url: https://mizani.readthedocs.io
 
 extra:
   recipe-maintainers:
