@@ -22,14 +22,12 @@ requirements:
     - setuptools_scm >=6.2
     - tomli
     - wheel
-    - setuptools-scm >=6.2
   run:
     - python
     - numpy >=1.23.5
     - scipy >=1.8.0
     - pandas >=2.2.0
     - python-tzdata  # [win]
-    - tzdata  # [win or emscripten]
   run_constrained:
     - pyright ==1.1.408
 
