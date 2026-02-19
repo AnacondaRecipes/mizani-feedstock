@@ -29,7 +29,8 @@ requirements:
     - pandas >=2.2.0
     - python-tzdata  # [win]
   run_constrained:
-    - pyright ==1.1.408
+  # Upstream: pyright has an exact version pinning. constraint relaxed to bigger-or-equal.
+    - pyright >=1.1.408
 
 test:
   source_files:
