@@ -1,5 +1,5 @@
 {% set name = "mizani" %}
-{% set version = "0.14.4" %}
+{% set version = "0.14.6" %}
 
 package:
   name: {{ name|lower }}
@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
-  sha256: 28934d91516d922d7cb0382c82a6c513692abc0174c42a50294ae571520633f9
+  sha256: 5b37ec00adb30420f18272844688b91137297068c707f18d6fd32673aed58a23
 
 build:
   number: 0
@@ -22,15 +22,17 @@ requirements:
     - setuptools_scm >=6.2
     - tomli
     - wheel
+    - setuptools-scm >=6.2
   run:
     - python
     - numpy >=1.23.5
     - scipy >=1.8.0
     - pandas >=2.2.0
     - python-tzdata  # [win]
+    - tzdata  # [win or emscripten]
   run_constrained:
-  # Upstream: pyright has an exact version pinning. constraint relaxed to bigger-or-equal.
-    - pyright >=1.1.408
+    # Upstream: pyright has an exact version pinning. constraint relaxed to bigger-or-equal.
+    - pyright ==1.1.411
 
 test:
   source_files:
