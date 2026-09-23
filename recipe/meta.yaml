@@ -1,19 +1,20 @@
 {% set name = "mizani" %}
-{% set version = "0.14.4" %}
+{% set version = "0.14.6" %}
 
 package:
-  name: {{ name|lower }}
+  name: {{ name }}
   version: {{ version }}
 
 source:
   url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
-  sha256: 28934d91516d922d7cb0382c82a6c513692abc0174c42a50294ae571520633f9
+  sha256: 5b37ec00adb30420f18272844688b91137297068c707f18d6fd32673aed58a23
 
 build:
   number: 0
   skip: true  # [py<310]
   script: {{ PYTHON }} -m pip install . --no-deps --no-build-isolation -vv
 
+# Upstream source - https://github.com/has2k1/mizani/blob/v0.14.6/pyproject.toml
 requirements:
   host:
     - python
@@ -28,9 +29,11 @@ requirements:
     - scipy >=1.8.0
     - pandas >=2.2.0
     - python-tzdata  # [win]
+    - tzdata  # [win]
   run_constrained:
-  # Upstream: pyright has an exact version pinning. constraint relaxed to bigger-or-equal.
-    - pyright >=1.1.408
+    # Upstream: pyright has an exact version pinning. constraint relaxed to bigger-or-equal.
+    # typing
+    - pyright ==1.1.411
 
 test:
   source_files:
@@ -57,6 +60,7 @@ test:
     - mizani.utils
   commands:
     - pip check
+    - python -c "from importlib.metadata import version; assert(version('{{ name }}')=='{{ version }}')"
     - pytest -vv
   requires:
     - pip
@@ -64,7 +68,7 @@ test:
     - pytest-cov
 
 about:
-  home: https://github.com/has2k1/mizani
+  home: https://mizani.readthedocs.io/en/stable
   license_file: LICENSE
   license: BSD-3-Clause
   license_family: BSD
